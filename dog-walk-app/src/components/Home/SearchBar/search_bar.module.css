@@ -15,4 +15,9 @@
     font-family: 'Urbanist', sans-serif;
 }
 
+.magnifying_glass {
+    position: absolute;
+    padding-top: 11px;
+    transform: translateX(-50px);
+}
 
