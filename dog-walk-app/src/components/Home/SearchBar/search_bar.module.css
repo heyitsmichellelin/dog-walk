@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Urbanist:wght@300&display=swap');
+
+.searchbar {
+    background-color: #E5E4E2;
+    width: 55%;
+    height: 50px;
+    border-radius: 50px;
+    border-top-style: hidden;
+    border-right-style: hidden;
+    border-left-style: hidden;
+    border-bottom-style: groove;
+    outline: none;
+    font-size: 24px;
+    padding-left: 30px;
+    font-family: 'Urbanist', sans-serif;
+}
+
+

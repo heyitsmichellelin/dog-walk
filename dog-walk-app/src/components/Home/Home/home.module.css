@@ -1,0 +1,15 @@
+.search_area {
+    padding-top: 40px;
+    padding-bottom:0%;
+}
+
+
+.dog_gif {
+    width: 800px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.graphic {
+    padding-top: 100px;
+}
