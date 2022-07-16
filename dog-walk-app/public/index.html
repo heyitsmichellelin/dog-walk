@@ -24,10 +24,15 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Dog Walk</title>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs4C_BWaknbJKouK2Q_h4UThIqEAHRXLY
+    &libraries=places&callback=initAutocomplete">
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+
+
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -39,5 +44,51 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      let autocomplete;
+      function initAutocomplete() {
+        console.log('in function');
+        autocomplete = new google.maps.places.Autocomplete(
+          document.getElementById('autocomplete_box'),
+          {
+            types: ['locality'],
+            componentRestrictions: {'country': ['US']},
+            fields: ['address_components', 'name']
+          });
+
+      console.log('towards end');
+
+      autocomplete.addListener('place_changed', onPlaceChanged);
+      }
+
+      function onPlaceChanged() {
+        var place = autocomplete.getPlace();
+
+        let cityName = place.address_components[0].long_name;
+        let stateName = place.address_components[2].short_name
+
+        const geocodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateName},840&appid=4605f265fdf76166fec1312b2f32a972`
+        const weatherURL = 'https://tile.openweathermap.org/map/temp_new/2/2/2.png?appid=4605f265fdf76166fec1312b2f32a972'
+
+        if (!place.geometry) {
+          document.getElementById('autocomplete_box').placeholder = "Where is your next adventure?";
+        } else {
+          document.getElementById('autocomplete_box').innerHTML = place.name;
+          //let t = place.name;
+          //console.log(t);
+        }
+
+        fetch(geocodingURL)
+        .then(res => res.json())
+        .then(out => {
+          let longitude = out[0].lon;
+          let latitude = out[0].lat;
+        })
+        .catch(err => {throw err});
+
+      }
+
+      
+    </script>
   </body>
 </html>
