@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import Home from './components/Home/Home/home';
+import Home from './pages/Home/home';
 
 function App() {
   return (

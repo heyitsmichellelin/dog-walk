@@ -1,6 +1,6 @@
 import React from 'react';
 import {useRef} from 'react';
-import magnifying_glass from '../../../images/magnifying_glass.png'
+import magnifying_glass from '../../images/magnifying_glass.png'
 import styles from './auto_search.module.css';
 
 function AutoSearchComponent() {

@@ -68,7 +68,6 @@
         let stateName = place.address_components[2].short_name
 
         const geocodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateName},840&appid=4605f265fdf76166fec1312b2f32a972`
-        const weatherURL = 'https://tile.openweathermap.org/map/temp_new/2/2/2.png?appid=4605f265fdf76166fec1312b2f32a972'
 
         if (!place.geometry) {
           document.getElementById('autocomplete_box').placeholder = "Where is your next adventure?";
@@ -83,6 +82,21 @@
         .then(out => {
           let longitude = out[0].lon;
           let latitude = out[0].lat;
+
+          const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=4605f265fdf76166fec1312b2f32a972`
+
+          fetch(weatherURL)
+          .then(res => res.json())
+          .then(out => {
+            let temperature = out.main.temp;
+            let temp_min = out.main.temp_min;
+            let temp_max = out.main.temp_max;
+            let description = out.weather[0].description;
+            console.log(temperature);
+            console.log(temp_min);
+            console.log(temp_max);
+            console.log(description);
+          })
         })
         .catch(err => {throw err});
 
