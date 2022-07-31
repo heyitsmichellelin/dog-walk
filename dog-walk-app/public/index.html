@@ -25,6 +25,9 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Dog Walk</title>
+    <script>
+      console.log(process.env.REACT_APP_GOOGLE_API_KEY)
+    </script>
     <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs4C_BWaknbJKouK2Q_h4UThIqEAHRXLY
     &libraries=places&callback=initAutocomplete">
@@ -73,8 +76,6 @@
           document.getElementById('autocomplete_box').placeholder = "Where is your next adventure?";
         } else {
           document.getElementById('autocomplete_box').innerHTML = place.name;
-          //let t = place.name;
-          //console.log(t);
         }
 
         fetch(geocodingURL)
@@ -99,7 +100,6 @@
           })
         })
         .catch(err => {throw err});
-
       }
 
       
