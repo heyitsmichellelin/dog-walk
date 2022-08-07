@@ -25,11 +25,8 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Dog Walk</title>
-    <script>
-      console.log(process.env.REACT_APP_GOOGLE_API_KEY)
-    </script>
     <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAs4C_BWaknbJKouK2Q_h4UThIqEAHRXLY
+    src="https://maps.googleapis.com/maps/api/js?key=%REACT_APP_GOOGLE_API_KEY%
     &libraries=places&callback=initAutocomplete">
     </script>
   </head>
@@ -37,16 +34,6 @@
 
 
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
     <script>
       let autocomplete;
       function initAutocomplete() {
@@ -70,7 +57,7 @@
         let cityName = place.address_components[0].long_name;
         let stateName = place.address_components[2].short_name
 
-        const geocodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateName},840&appid=4605f265fdf76166fec1312b2f32a972`
+        const geocodingURL = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName},${stateName},840&appid=%REACT_APP_OPENWEATHER_API_KEY%`
 
         if (!place.geometry) {
           document.getElementById('autocomplete_box').placeholder = "Where is your next adventure?";
@@ -83,8 +70,8 @@
         .then(out => {
           let longitude = out[0].lon;
           let latitude = out[0].lat;
-
-          const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=4605f265fdf76166fec1312b2f32a972`
+          
+          const weatherURL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=%REACT_APP_OPENWEATHER_API_KEY%`
 
           fetch(weatherURL)
           .then(res => res.json())
